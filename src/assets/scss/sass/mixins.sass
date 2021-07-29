@@ -1,0 +1,30 @@
+@import '../utils/libs'
+@import '../utils/reset'
+
+@import 'media'
+@import 'variables'
+
+@mixin adaptive-font($pcSize,$mobSize)
+  $addSize: $pcSize - $mobSize
+  $addMobSize: $addSize + $addSize * 0.7
+  @media(max-width: 767px)
+    font-size: calc(#{$mobSize + px} + #{$addMobSize} * ((100vw - 320px) /#{$maxWidthLayout}))
+  @media(min-width: 767px)
+    font-size: calc(#{$mobSize + px} + #{$addSize} * ((100vw/#{$maxWidthLayout})))
+
+@mixin box-hover-fly-shadow
+  transition: transform .3s, box-shadow .3s
+  &:hover
+    box-shadow: 0 4px 24px 0 rgba(0, 0, 0, .22)
+    transform: translateY(-4px)
+
+@mixin box-hover-fly-shadow-light
+  transition: transform .3s, box-shadow .3s
+  &:hover
+    transform: translateY(-2px)
+    box-shadow: 0 20px 30px -10px rgba(0, 0, 0, 0.1), 0 25px 50px 8px rgba(0, 0, 0, 0.1)
+
+@mixin base-transition
+  transition: all .3s ease 0s
+  &:hover
+    transition: all .4s ease 0s

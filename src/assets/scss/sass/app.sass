@@ -1,0 +1,305 @@
+@import '../utils/libs'
+@import '../utils/reset'
+
+@import 'variables'
+@import 'mixins'
+
+//Базовые стили
+html
+  scroll-behavior: smooth
+html, body
+  min-height: 100%
+  height: 100%
+  width: 100%
+body
+  height: auto
+  font-family: $font
+  @include adaptive-font(16,14)
+  color: $fontcolor
+  background: $bodyBgColor
+*,
+*:before,
+*:after
+  box-sizing: border-box
+
+a
+  &:hover,:active,:target,:focus
+    text-decoration: none
+button
+  outline: none
+  background: transparent
+  &:hover,&:focus,&:active
+    outline: none
+    background: transparent
+/*Новые стили для скролла*/
+::-webkit-scrollbar
+  width: 4px
+  height: 4px
+  border-radius: 5px
+  background-color: #C4C4C4
+
+::-webkit-scrollbar-thumb
+  border-radius: 10px
+  position: relative
+  background: $scrollbarColor
+#app
+  display: flex
+  flex-direction: column
+  //width: 100%
+  min-height: 100vh
+  height: 100%
+  overflow-x: hidden
+.content
+  flex: 1 1 auto
+.stop-scroll
+  overflow: hidden
+.overlay
+  display: none
+  position: fixed
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  min-height: 100vh
+  background: rgba(0,0,0,.35)
+  z-index: 10
+  &.fade-in-overlay
+    display: block
+//Общие стили для заголовков
+.section-title
+  font-size: 26px
+  line-height: 1.3
+  font-weight: 700
+  text-align: center
+  @media only screen and (min-width: 768px)
+    font-size: 36px
+    line-height: 1.5
+//Кнопки на сайте
+.btn
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100%
+  max-width: 340px
+  min-height: 40px
+  font-size: 22px
+  line-height: 1.5
+  font-weight: 700
+  border-radius: 10px
+  color: #fff
+  background: $siteBaseColor
+  transition: all .4s ease-in-out
+  &:hover
+    transition: all .4s ease-in-out
+    color: #fff
+    background: darken($siteBaseColor,15%)
+  &:focus
+    transition: all .4s ease-in-out
+    box-shadow: none
+    color: #fff
+    background: darken($siteBaseColor,15%)
+  @media only screen and (min-width: 768px)
+    min-height: 70px
+
+//popUp
+.popUp
+  position: fixed
+  top: 50%
+  left: 50%
+  transform: translate(-50%,-50%)
+  max-width: 640px
+  width: 100%
+  height: auto
+  display: none
+  margin: 0 auto
+  border-radius: 10px
+  background: #fff
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1)
+  z-index: 12
+
+  border: 2px solid $orange
+  &.fade-in
+    display: flex
+  &__wrapper
+    position: relative
+    display: flex
+    align-items: center
+    width: 100%
+    min-height: 200px
+    height: 100%
+    padding: 16px
+  &__body
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: space-between
+    width: 100%
+    height: 100%
+  &__close-btn
+    position: absolute
+    top: 8px
+    right: 8px
+    z-index: 1
+    svg
+      transition: all .4s ease-in-out
+    &:hover
+      svg
+        transition: all .4s ease-in-out
+        transform: rotate(-135deg)
+//Swiper
+.swiper
+  &-wrapper
+    align-items: center
+  &-container
+    width: 100%
+    height: 100%
+    margin: 0 auto
+    padding: 25px 20px
+    overflow: hidden
+    @media only screen and (min-width: 768px)
+      padding: 35px 51px
+  &-button
+    &-row
+      display: flex
+      align-items: center
+      justify-content: center
+      padding-top: 33px
+      width: 100%
+      max-width: 90px
+      margin: 0 auto
+      @media only screen and (min-width: 768px)
+        max-width: 100%
+        padding-top: 0
+    &-next,&-prev
+      position: relative
+      top: 0
+      transform: translateY(0)
+      display: flex
+      align-items: center
+      width: 51px
+      max-width: 100%
+      height: 100%
+      margin-top: 0
+      @media only screen and (min-width: 768px)
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        margin-top: 0
+      &:after
+        font-size: 24px
+        font-weight: bold
+        color: #D0D4CD
+    &-next
+      right: 0
+      justify-content: flex-end
+    &-prev
+      left: 0
+      justify-content: flex-start
+
+//Section : "Процесс сборки"
+.assembly
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: space-between
+  padding: 40px 16px
+
+  border: 2px solid $red
+  &__title
+    width: 100%
+    max-width: 660px
+    margin-bottom: 13px
+
+    border: 2px solid $orange
+  &__slider
+    width: 100%
+    max-width: 740px
+    margin-bottom: 13px
+
+    border: 2px solid $orange
+  &__btn
+    border: 2px solid $orange
+//"Процесс сборки айтем"
+.assembly-item
+  display: flex
+  flex-direction: column
+  align-items: center
+  width: 100%
+  max-width: 640px
+  padding: 20px
+  border-radius: 10px
+  background: #fff
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.1)
+
+  border: 2px solid $yellow
+  @media only screen and (min-width: 768px)
+    padding: 40px
+  &__img
+    position: relative
+    width: 100%
+    max-width: 560px
+    margin-bottom: 28px
+    & > img
+      object-fit: cover
+  &__number
+    position: absolute
+    top: -12px
+    left: -4px
+    width: 40px
+    height: 40px
+    z-index: 1
+    display: flex
+    align-items: center
+    justify-content: center
+    font-weight: 700
+    font-size: 16px
+    line-height: 2
+    border-radius: 50%
+    color: $siteBaseColor
+    background: #fff
+    @media only screen and (min-width: 768px)
+      width: 50px
+      height: 45px
+      font-size: 22px
+  &__text
+    text-align: center
+    font-weight: 400
+    font-size: 14px
+    line-height: 1.5
+    @media only screen and (min-width: 768px)
+      font-size: 16px
+    & > span
+      font-weight: 700
+//"Процесс сборки popUp"
+.assembly-popUp
+  &__title
+    margin-bottom: 16px
+    font-weight: 700
+    font-size: 18px
+    line-height: 1.3
+    text-align: center
+    @media only screen and (min-width: 768px)
+      font-size: 24px
+      line-height: 1.5
+  &__form
+    display: flex
+    flex-direction: column
+    align-items: center
+    width: 100%
+    max-width: 280px
+    @media only screen and (min-width: 768px)
+      max-width: 100%
+  &__input
+    width: 100%
+    max-width: 340px
+    margin-bottom: 16px
+    padding: 8px 16px
+    border: 3px solid #D0D4CD
+    border-radius: 10px
+    &.еrror
+      background: rgba(164,14,17,.1)
+      border: 3px solid $errColor
+  &__thanks
+    font-weight: 700
+    font-size: 32px
+    line-height: 1.5
